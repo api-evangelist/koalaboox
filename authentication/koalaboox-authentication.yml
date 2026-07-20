@@ -1,0 +1,84 @@
+generated: '2026-07-19'
+method: searched
+source: https://github.com/koalaboox/api-refarch (first-party reference architecture,
+  MIT, (c) 2019 Koalaboox) + live probes of https://connect.koalaboox.com
+docs: https://developers.cegid.be/
+summary:
+  types:
+  - oauth2
+  api_key_in: []
+  oauth2_flows:
+  - authorizationCode
+  bearer_tokens: true
+  refresh_tokens: true
+schemes:
+- name: OAuth2
+  type: oauth2
+  description: >-
+    Three-legged OAuth 2.0. A partner application registers to receive a client id
+    and client secret, redirects the user to the Koalaboox authorization endpoint,
+    and exchanges the returned authorization code for a bearer access token plus a
+    refresh token. Access tokens are sent as `Authorization: Bearer <token>` on every
+    API call. The token response carries `access_token`, `refresh_token` and `expires_in`.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://connect.koalaboox.com/oauth/authorize
+    tokenUrl: https://connect.koalaboox.com/oauth/token
+    grant_types:
+    - authorization_code
+    - refresh_token
+    authorize_parameters:
+    - client_id
+    - redirect_uri
+    - state
+    - response_type
+    - scope
+    token_parameters:
+    - grant_type
+    - client_id
+    - client_secret
+    - redirect_uri
+    - code
+  scopes: []
+  scopes_note: >-
+    No scope catalogue is published. The first-party reference client sends an empty
+    `scope` parameter on the authorization request, so authorization appears to be
+    all-or-nothing at the connected-account level rather than scope-partitioned. No
+    scopes/ artifact is emitted for this provider.
+  sources:
+  - https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php
+  - https://github.com/koalaboox/api-refarch/blob/master/config/koalaboox.php
+csrf:
+  state_parameter: required
+  evidence: >-
+    The reference architecture generates a random `state` on redirect and rejects the
+    callback with HTTP 422 when the state is absent from the request, absent from the
+    session, or mismatched.
+  source: https://github.com/koalaboox/api-refarch/blob/master/app/Http/Middleware/AuthenticateApiCallbackRequest.php
+token_handling:
+  header: 'Authorization: Bearer {access_token}'
+  accept_header_required: application/json
+  accept_header_note: >-
+    The reference client forces `Accept: application/json` on every request so the
+    API returns JSON errors instead of HTML redirects.
+  expiry_field: expires_in
+  refresh: refresh_token returned with the access token
+  revocation: >-
+    A partner disconnects by discarding the stored access token, refresh token and
+    expiry; no dedicated revocation endpoint is documented.
+verification:
+  probed: '2026-07-19'
+  observations:
+  - endpoint: POST https://connect.koalaboox.com/oauth/token
+    status: 400
+    body: '{"error":"unsupported_grant_type","error_description":"The authorization
+      grant type is not supported by the authorization server.","hint":"Check that
+      all required parameters have been provided","message":"The authorization grant
+      type is not supported by the authorization server."}'
+    note: RFC 6749 error envelope; server is a league/oauth2-server (Laravel Passport)
+      implementation.
+  - endpoint: GET https://connect.koalaboox.com/oauth/authorize
+    status: 401
+  - endpoint: GET https://connect.koalaboox.com/api/invoices
+    status: 401
+    body: '{"message":"Unauthorized"}'
