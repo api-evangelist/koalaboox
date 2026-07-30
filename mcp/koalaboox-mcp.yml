@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: https://github.com/koalaboox/api-refarch (first-party client) + live endpoint
+  probes of https://connect.koalaboox.com
+published_server: null
+published_server_note: >-
+  No official hosted or remote MCP server is published by Koalaboox / Cegid for this
+  API — none in the docs, the GitHub org, npm, or the MCP registry.
+server:
+  name: koalaboox
+  transport: http
+  url: null
+api:
+  base_url: https://connect.koalaboox.com
+  auth: OAuth 2.0 authorization code, bearer access token (see authentication/koalaboox-authentication.yml)
+tools:
+- name: list_invoices
+  description: List the invoices in the connected Koalaboox account.
+  method: GET
+  path: /api/invoices
+  source_operation: https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php#invoices
+  read_only: true
+- name: get_invoice
+  description: Retrieve a single invoice by its numeric identifier.
+  method: GET
+  path: /api/invoices/{id}
+  parameters:
+  - name: id
+    in: path
+    type: integer
+    required: true
+  source_operation: https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php#invoice
+  read_only: true
+- name: get_user
+  description: Retrieve the authenticated Koalaboox account holder.
+  method: GET
+  path: /api/user
+  source_operation: live probe (401 without token)
+  read_only: true
+candidate_note: >-
+  This is a candidate tool list, not a shipped server. It is limited to the three
+  endpoints that could be confirmed from first-party source or live probing; it is
+  deliberately not extrapolated from the product feature list. Response payloads are
+  wrapped in a top-level `data` member (see conventions/koalaboox-conventions.yml).

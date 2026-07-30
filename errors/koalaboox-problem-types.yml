@@ -1,0 +1,64 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of https://connect.koalaboox.com (2026-07-19) + https://github.com/koalaboox/api-refarch
+format: custom-json
+format_note: >-
+  Koalaboox does not use RFC 9457 problem+json. API errors are a bare JSON object with
+  a `message` member; OAuth endpoint errors use the RFC 6749 error envelope emitted
+  by league/oauth2-server (Laravel Passport). No `type` URIs, no error-code registry
+  is published.
+envelopes:
+- name: api
+  media_type: application/json
+  shape: '{"message": "..."}'
+- name: oauth2
+  media_type: application/json
+  shape: '{"error": "...", "error_description": "...", "hint": "...", "message": "..."}'
+  standard: RFC 6749 section 5.2
+problems:
+- status: 401
+  envelope: api
+  message: Unauthorized
+  title: Missing or invalid access token
+  remediation: >-
+    Send a valid `Authorization: Bearer <access_token>` header. The first-party reference
+    client distinguishes the two causes client-side: no token stored raises a
+    MissingTokenException, a stored token rejected with 401 raises an InvalidTokenException
+    and the user is prompted to reconnect via the OAuth authorization flow.
+  observed_on:
+  - GET https://connect.koalaboox.com/api/invoices
+  - GET https://connect.koalaboox.com/api/user
+  - GET https://connect.koalaboox.com/oauth/authorize
+- status: 400
+  envelope: oauth2
+  error: unsupported_grant_type
+  title: The authorization grant type is not supported by the authorization server
+  hint: Check that all required parameters have been provided
+  remediation: Send `grant_type=authorization_code` (or `refresh_token`) together with
+    client_id, client_secret, redirect_uri and code to the token endpoint.
+  observed_on:
+  - POST https://connect.koalaboox.com/oauth/token
+- status: 405
+  envelope: api
+  title: Method not allowed
+  remediation: The token endpoint accepts POST only.
+  observed_on:
+  - GET https://connect.koalaboox.com/oauth/token
+client_side_conditions:
+- name: invalid-response
+  trigger: response body decodes but has no top-level `data` member
+  behaviour: the reference client raises "Invalid response, no data found"
+  source: https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php
+- name: oauth-callback-state-mismatch
+  status: 422
+  trigger: OAuth callback arrives with a missing or mismatched `state` parameter
+  behaviour: the reference architecture aborts with 422 "Invalid request (State mismatch)"
+  source: https://github.com/koalaboox/api-refarch/blob/master/app/Http/Middleware/AuthenticateApiCallbackRequest.php
+- name: access_denied
+  trigger: the user refuses to authorize the connection; the callback carries `error=access_denied`
+  behaviour: partner shows "You refused to connect to Koalaboox API"
+coverage_note: >-
+  This catalogue is limited to conditions that could be observed live or read from
+  first-party source. The provider's own error reference lives on the Stoplight developer
+  portal, whose reference nodes are not currently being served (see lifecycle/), so
+  the full catalogue could not be harvested. Nothing here is inferred.

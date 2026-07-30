@@ -1,0 +1,64 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of the Koalaboox / Cegid Click & Finance hosts
+notes: >-
+  The Koalaboox-branded hosts publish no /.well-known/ discovery documents. The API
+  host connect.koalaboox.com returns 403 for the whole /.well-known/ prefix and the
+  Stoplight developer portal developers.cegid.be returns 404. The only document found
+  is the parent group's RFC 9116 security.txt on www.cegid.com, which is the disclosure
+  channel that now covers this product; it is saved here verbatim and its host is
+  recorded explicitly so it is not mistaken for a koalaboox.com-hosted file.
+hosts:
+- host: https://connect.koalaboox.com
+  role: api
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+- host: https://developers.cegid.be
+  role: developer-portal
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://www.invoice-financing.cegid.com
+  role: application
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+  - path: /.well-known/openid-configuration
+    status: 302
+  - path: /.well-known/oauth-authorization-server
+    status: 302
+  - path: /.well-known/api-catalog
+    status: 302
+  - path: /.well-known/ai-plugin.json
+    status: 302
+- host: https://www.cegid.com
+  role: parent-group
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: koalaboox-security.txt
+  - path: /.well-known/openid-configuration
+    status: 301
+  - path: /.well-known/oauth-authorization-server
+    status: 301
+  - path: /.well-known/api-catalog
+    status: 301
+  - path: /.well-known/ai-plugin.json
+    status: 301

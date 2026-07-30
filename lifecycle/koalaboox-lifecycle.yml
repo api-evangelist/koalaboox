@@ -1,0 +1,63 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of koalaboox.com, connect.koalaboox.com, developers.koala.eu,
+  developers.cegid.be, invoice-financing.cegid.com (2026-07-19)
+versioning:
+  scheme: unversioned
+  api_note: >-
+    API paths carry no version segment or version header (`/api/invoices`, `/oauth/token`).
+  application_note: The web application is served under a /v3/ path prefix.
+brand_and_ownership:
+  status: acquired
+  successor_product: Cegid Invoice & Financing
+  successor_api_brand: Cegid Click & Finance
+  parent: Cegid
+  underwriter: Cegid Fin Belgium
+  evidence:
+  - 'https://www.koalaboox.com/ 301 -> https://www.cegid.be/'
+  - 'https://app.koalaboox.com/ 301 -> https://app.invoice-financing.cegid.com/'
+  - 'https://api.koalaboox.com/ 301 -> https://api.invoice-financing.cegid.com/'
+  - 'https://docs.koalaboox.com/ 301 -> https://docs.invoice-financing.cegid.com/'
+  - 'https://developers.koala.eu/ 301 -> https://developers.cegid.be/'
+  - 'https://connect.koalaboox.com/api/documentation 301 -> https://developers.koala.eu/'
+domain_migration:
+  marketing: koalaboox.com -> cegid.be / cegid.com
+  application: app.koalaboox.com -> app.invoice-financing.cegid.com
+  developer_portal: developers.koala.eu -> developers.cegid.be
+  api: >-
+    connect.koalaboox.com is still live and still serving the OAuth 2.0 and /api endpoints
+    under the Koalaboox name; it has NOT been migrated to a cegid.com host. api.koalaboox.com
+    (a different host) does redirect to api.invoice-financing.cegid.com, which currently
+    answers HTTP 500 at every path probed.
+  note: koalaboox.es and www.koalaboox.es no longer resolve to a working service (connection
+    reset).
+deprecation:
+  policy_url: null
+  sunset_header: unknown
+  note: No deprecation policy, Sunset/Deprecation header support (RFC 8594) or migration
+    guide was found. No Deprecation pointer is emitted.
+status_page:
+  url: null
+  note: No status page was found. status.cegid.com does not resolve. No StatusPage
+    pointer is emitted.
+sla:
+  url: null
+documentation_health:
+  portal: https://developers.cegid.be/
+  platform: Stoplight
+  workspace_slug: koalaboox
+  workspace_name: Click & Finance
+  home_page_status: 200
+  reference_nodes_status: 404
+  finding: >-
+    The Stoplight workspace record served with the portal home page carries
+    `"locked": true` with `"lockReason": "failed_payment"` and a lock timestamp of
+    2025-10-24. The portal home content renders, but every documentation and API-reference
+    node under /docs/developer-portal returns 404. The published OpenAPI definition
+    is therefore not currently retrievable from any public surface, which is why this
+    repo carries no openapi/ artifact despite the API being live.
+  observed: '2026-07-19'
+support:
+  developer_contact: koala-b2b-support@cegid.com
+  customer_support: https://www.cegid.com/fr/assistance-clients/
+deprecated_operations: []

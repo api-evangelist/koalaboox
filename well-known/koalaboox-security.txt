@@ -1,0 +1,11 @@
+#👋 Welcome to our Security.txt
+# 📧 Our contact :
+Contact: https://vdp.cegid.com/p/Send-a-report
+# 🔐 Encryption is managed by YESWEHACK.
+Preferred-Languages: en, fr
+Canonical: https://www.cegid.com/.well-known/security.txt
+# 🐞 Our policy
+Policy: https://vdp.cegid.com/p/Policy
+# 💼 We are hiring!
+Hiring: https://jobs.cegid.com
+Expires: 2024-07-01T22:00:00.000Z

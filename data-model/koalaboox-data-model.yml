@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: derived
+source: https://github.com/koalaboox/api-refarch (first-party client surface) + live
+  endpoint probes
+coverage: partial
+coverage_note: >-
+  Derived from the operations exposed by the first-party reference client and the
+  endpoints confirmed live, not from an OpenAPI definition — the provider's Stoplight
+  reference nodes are not currently served (see lifecycle/). Only entities with direct
+  evidence are listed; no schema fields are asserted beyond the identifier used in
+  the path, and no relationships are invented.
+entities:
+- name: Invoice
+  description: A sales invoice belonging to the connected Koalaboox account. The API
+    is positioned for automating invoice encoding, importing invoices from another
+    system, and financing outstanding invoices.
+  collection_endpoint: GET /api/invoices
+  item_endpoint: GET /api/invoices/{id}
+  identifier:
+    field: id
+    type: integer
+    evidence: the reference client types the invoice accessor parameter as `int $id`
+  evidence:
+  - https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php
+  - GET https://connect.koalaboox.com/api/invoices -> 401 (endpoint exists, auth required)
+- name: User
+  description: The Koalaboox account holder whose authorization the partner application
+    holds. Every API call is scoped to this connected user via their bearer token.
+  item_endpoint: GET /api/user
+  evidence:
+  - GET https://connect.koalaboox.com/api/user -> 401 (endpoint exists, auth required)
+relationships:
+- from: User
+  to: Invoice
+  kind: has_many
+  via: connected-account scope
+  evidence: >-
+    The reference client's `invoices()` accessor is only callable on a client bound
+    to an authenticated user (`forUser($user)`), and the documented behaviour is
+    "Return all the user's invoices" — invoices are returned within the authorizing
+    user's account, not addressed globally.
+undocumented:
+  note: >-
+    The product surface implies further entities (quotes, purchase orders, delivery
+    notes, purchase invoices, recurring invoices, business customers, bank connections,
+    cash advances) that appear on the pricing page and in the product description.
+    None of these are asserted here because no API endpoint for them could be observed
+    or read from first-party source.
+render: null

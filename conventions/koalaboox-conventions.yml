@@ -1,0 +1,72 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.cegid.be/ (Cegid Click & Finance API portal home) + https://github.com/koalaboox/api-refarch
+  + live probes of https://connect.koalaboox.com
+architecture:
+  style: REST
+  description: >-
+    "The Cegid Click & Finance API is based on a RESTful architecture, which emphasises
+    resource-oriented URLs following easy-to-understand patterns. Our API relies on
+    JSON-encoded requests and responses, uses standard HTTP status codes, and implements
+    industry-standard authentication." — developer portal home, verbatim.
+  base_url: https://connect.koalaboox.com
+  path_prefix: /api
+content_negotiation:
+  request_media_type: application/json
+  response_media_type: application/json
+  accept_header: required
+  accept_header_note: >-
+    Clients must send `Accept: application/json`; without it the application answers
+    browser-style HTML redirects rather than JSON. The first-party reference client
+    sets this header on every outbound request.
+authentication:
+  style: oauth2-bearer
+  header: 'Authorization: Bearer {access_token}'
+  detail: authentication/koalaboox-authentication.yml
+response_envelope:
+  shape: '{"data": ...}'
+  description: >-
+    Successful responses are wrapped in a top-level `data` member. The reference client
+    treats a decoded body without a `data` property as an invalid response and raises
+    an error, so the envelope is contractual rather than incidental. Collection endpoints
+    return `data` as an array; single-resource endpoints return `data` as an object.
+  source: https://github.com/koalaboox/api-refarch/blob/master/app/Koalaboox/Client.php
+error_envelope:
+  api_errors: '{"message": "..."}'
+  oauth_errors: '{"error": "...", "error_description": "...", "hint": "...", "message":
+    "..."}'
+  format: not RFC 9457 (no application/problem+json)
+  detail: errors/koalaboox-problem-types.yml
+status_codes:
+  policy: standard HTTP status codes
+  observed:
+  - 400
+  - 401
+  - 405
+idempotency:
+  supported: unknown
+  note: >-
+    No idempotency key header, retry-safety contract or deduplication window is documented
+    on the developer portal, and none appears in the first-party reference client.
+    No Idempotency pointer is emitted for this provider.
+pagination:
+  supported: unknown
+  note: >-
+    The reference client fetches GET /api/invoices without pagination parameters and
+    the developer portal reference nodes are not currently served, so no pagination
+    style could be observed. Not asserted.
+versioning:
+  api: unversioned path (/api/...) — no version segment or version header observed
+  application: the web application uses a /v3/ path prefix (invoice-financing.cegid.com/v3/)
+  detail: lifecycle/koalaboox-lifecycle.yml
+rate_limiting:
+  documented: false
+  note: No published rate-limit policy or rate-limit response headers were observed.
+request_tracing:
+  documented: false
+cross_links:
+  authentication: authentication/koalaboox-authentication.yml
+  errors: errors/koalaboox-problem-types.yml
+  lifecycle: lifecycle/koalaboox-lifecycle.yml
+  conformance: conformance/koalaboox-conformance.yml
+  data_model: data-model/koalaboox-data-model.yml

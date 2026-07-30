@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: searched
+source: https://developers.cegid.be/ + live probes of https://connect.koalaboox.com
+  + https://www.cegid.com/be/fr/produits/cegid-invoice-financing/
+standards:
+- id: rest-json
+  conforms: true
+  evidence: >-
+    Developer portal states the API is "based on a RESTful architecture ... relies on
+    JSON-encoded requests and responses, uses standard HTTP status codes".
+- id: oauth2
+  conforms: true
+  evidence: >-
+    Live authorization-code flow at /oauth/authorize and /oauth/token; token endpoint
+    returns RFC 6749 error objects. Reference client exchanges code for access_token
+    + refresh_token + expires_in.
+- id: rfc6749-oauth2-errors
+  conforms: true
+  evidence: >-
+    Probed POST /oauth/token returned an object with error, error_description and hint
+    members (error=unsupported_grant_type).
+- id: oauth2-state-csrf
+  conforms: true
+  evidence: First-party reference architecture requires and validates the `state` parameter
+    on the authorization callback, rejecting mismatches with HTTP 422.
+- id: peppol
+  conforms: true
+  evidence: >-
+    Product pages and every pricing tier advertise "Connexion Peppol sans frais" (free
+    Peppol connection) with unlimited reception of electronic invoices and metered
+    issuance — the platform is a Peppol access point for Belgian structured e-invoicing.
+- id: belgian-einvoicing-mandate-2026
+  conforms: true
+  evidence: >-
+    Product page positions the platform as letting users "créez, envoyez et recevez
+    vos factures électroniques en toute conformité" with the Belgian 2026 electronic-invoicing
+    obligation.
+- id: openidconnect
+  conforms: false
+  evidence: No /.well-known/openid-configuration is served on any host (403/404/301).
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: false
+  evidence: /.well-known/oauth-authorization-server returns 403 on connect.koalaboox.com.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are a bare JSON object carrying only a message member; no
+    application/problem+json media type is used.
+- id: rfc9116-security-txt
+  conforms: partial
+  evidence: >-
+    No security.txt on any Koalaboox-branded host; the parent group publishes one at
+    https://www.cegid.com/.well-known/security.txt (harvested to well-known/), though
+    its Expires field lapsed on 2024-07-01.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No deprecation policy or Sunset header support found.
+- id: openapi
+  conforms: unknown
+  evidence: >-
+    The API is documented on a Stoplight portal, which implies an OpenAPI source of
+    truth, but the workspace is locked and all reference nodes return 404, so no spec
+    could be retrieved or verified.
+certifications_published: false
+certifications_note: >-
+  No product-level compliance program, trust center or named certification (SOC 2,
+  ISO 27001, PCI DSS) was found for Koalaboox / Cegid Invoice & Financing. No Compliance
+  pointer is emitted.

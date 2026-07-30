@@ -1,0 +1,37 @@
+generated: '2026-07-19'
+method: searched
+source: npm registry search, PyPI JSON API, RubyGems search API, Packagist search API,
+  GitHub org https://github.com/koalaboox
+packages: []
+packages_note: >-
+  No first-party Koalaboox / Cegid Click & Finance client library was found in any
+  public package registry. npm search for "koalaboox" returns 0 results; the PyPI
+  JSON API returns Not Found; RubyGems and Packagist both return empty result sets.
+  No SDKs pointer is emitted because the provider ships no client library.
+reference_implementations:
+- name: api-refarch
+  title: Koalaboox API reference architecture
+  url: https://github.com/koalaboox/api-refarch
+  language: php
+  framework: Laravel
+  license: MIT
+  copyright: (c) 2019 Koalaboox
+  official: true
+  published: false
+  registry: null
+  description: >-
+    First-party sample application showing how a partner connects to the Koalaboox
+    API: an OAuth 2.0 authorization-code client (`app/Koalaboox/Client.php`), a Guzzle
+    middleware that attaches the bearer token and forces JSON (`AuthenticateRequest.php`),
+    state-parameter CSRF validation on the callback, token-error recovery, and
+    invoice retrieval helpers. Distributed as a repository to clone, not as a
+    Composer package — it declares no package name on Packagist.
+  created: '2019-07-29'
+  last_pushed: '2023-04-19'
+- name: static
+  title: Public assets
+  url: https://github.com/koalaboox/static
+  official: true
+  description: Public brand assets referenced by the developer portal (favicon, Cegid
+    logo).
+  last_pushed: '2021-10-08'

@@ -1,0 +1,89 @@
+generated: '2026-07-19'
+method: searched
+source: https://www.invoice-financing.cegid.com/v3/pricing?lang=fr
+currency: EUR
+billing_period: month
+markets:
+- BE
+- ES
+notes: >-
+  Public self-serve subscription tiers for the Koalaboox / Cegid Invoice & Financing
+  platform, captured verbatim from the published pricing page (French, Belgium). Cash-advance
+  ceilings are subject to eligibility and acceptance by Cegid Fin Belgium. Additional
+  users and additional electronic invoices are paid options on every tier.
+plans:
+- name: Start
+  price: 4.00
+  users_included: 1
+  features:
+  - Free Peppol connection
+  - Unlimited reception of electronic invoices
+  - Dynamic dashboards
+  - Mobile application
+  - Chart-of-accounts linking and invoice export
+  - 10 business customers included
+  - Purchase-invoice management
+  - Unlimited sales-invoice creation
+  options:
+  - Additional electronic invoices
+- name: Essentiel
+  price: 17.95
+  users_included: 1
+  features:
+  - Free Peppol connection
+  - Unlimited reception of electronic invoices
+  - 10 electronic invoice issuances included
+  - Dynamic dashboards
+  - Mobile application
+  - Chart-of-accounts linking and invoice export
+  - 50 business customers included
+  - Purchase-invoice management
+  - Unlimited creation of sales invoices, quotes, purchase orders and delivery notes
+  - Recurring invoices
+  - 1 bank-account connection
+  cash_advance_limit: 25000
+  options:
+  - Additional user
+  - Additional electronic invoices
+- name: Idéal
+  price: 31.95
+  users_included: 2
+  features:
+  - Free Peppol connection
+  - Unlimited reception of electronic invoices
+  - 50 electronic invoice issuances included
+  - Dynamic dashboards
+  - Mobile application
+  - Chart-of-accounts linking and invoice export
+  - Unlimited business customers
+  - Purchase-invoice management
+  - Unlimited creation of sales invoices, quotes, purchase orders and delivery notes
+  - Recurring invoices
+  - 2 bank-account connections
+  cash_advance_limit: 100000
+  options:
+  - Additional user
+  - Additional electronic invoices
+- name: Optimal
+  price: 53.95
+  users_included: 5
+  features:
+  - Free Peppol connection
+  - Unlimited reception of electronic invoices
+  - 100 electronic invoice issuances included
+  - Dynamic dashboards
+  - Mobile application
+  - Chart-of-accounts linking and invoice export
+  - Unlimited business customers
+  - Purchase-invoice management
+  - Unlimited creation of sales invoices, quotes, purchase orders and delivery notes
+  - Recurring invoices
+  - Unlimited bank-account connections
+  cash_advance_limit: profile-dependent
+  options:
+  - Additional user
+  - Additional electronic invoices
+api_access_note: >-
+  The pricing page does not price API access separately; the Cegid Click & Finance
+  API is positioned as a partner/integration surface reached by registering for
+  application credentials via the developer portal.
