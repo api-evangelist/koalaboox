@@ -1,22 +1,136 @@
 aid: koalaboox
 name: Koalaboox
-description: Koalaboox is a company surfaced as a portfolio company of speedinvest and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: 'Koalaboox is a Belgian cloud invoicing and cash-flow platform for small
+  businesses, self-employed professionals and their accountants, now operating as Cegid
+  Invoice & Financing — API brand Cegid Click & Finance — following its acquisition
+  by Cegid. The platform covers sales invoicing, quotes, purchase-invoice management,
+  recurring invoices, dynamic dashboards, bank-account connections and Peppol-based
+  electronic invoicing for the Belgian 2026 e-invoicing mandate, sold in Belgium and
+  Spain. Alongside the SaaS it offers invoice financing — cash advances against outstanding
+  invoices — underwritten by Cegid Fin Belgium. Koalaboox exposes a public REST API
+  at connect.koalaboox.com secured with OAuth 2.0 authorization-code grants, documented
+  on a Stoplight developer portal, with a first-party Laravel reference architecture
+  published on GitHub.'
 url: https://raw.githubusercontent.com/api-evangelist/koalaboox/refs/heads/main/apis.yml
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://raw.githubusercontent.com/koalaboox/static/main/CEGID_Logo_Bleu.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - speedinvest
-x-tier: stub
+x-tier: enriched
 x-tier-reason: portfolio-lead
+x-successor: Cegid Invoice & Financing / Cegid Click & Finance
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Invoicing
+- Electronic Invoicing
+- Peppol
+- Accounting
+- Invoice Financing
+- Working Capital
+- Small Business
+- Fintech
+- Belgium
+- Spain
+- OAuth
+apis:
+- name: Cegid Click & Finance API
+  description: 'REST API for the Koalaboox / Cegid Click & Finance invoicing and invoice-financing
+    platform. Resource-oriented URLs, JSON-encoded requests and responses, standard
+    HTTP status codes, and OAuth 2.0 authorization-code authentication with bearer
+    access tokens and refresh tokens. Used to automate invoice encoding, import invoices
+    from another system, and offer invoice financing inside third-party software.'
+  humanURL: https://developers.cegid.be/
+  baseURL: https://connect.koalaboox.com
+  image: https://raw.githubusercontent.com/koalaboox/static/main/CEGID_Logo_Bleu.png
+  tags:
+  - Invoicing
+  - Electronic Invoicing
+  - Invoice Financing
+  - OAuth
+  properties:
+  - type: Authentication
+    url: authentication/koalaboox-authentication.yml
+  - type: Conventions
+    url: conventions/koalaboox-conventions.yml
+  - type: ErrorCatalog
+    url: errors/koalaboox-problem-types.yml
+  - type: DataModel
+    url: data-model/koalaboox-data-model.yml
+  - type: MCPServer
+    url: mcp/koalaboox-mcp.yml
+common:
+- type: VulnerabilityDisclosure
+  url: security/koalaboox-vulnerability-disclosure.yml
+- type: Security
+  url: https://vdp.cegid.com/p/Policy
+- type: DomainSecurity
+  url: security/koalaboox-domain-security.yml
+- type: SecurityTxt
+  url: well-known/koalaboox-security.txt
+- type: WellKnown
+  url: well-known/koalaboox-well-known.yml
+- type: DeveloperPortal
+  url: https://developers.cegid.be/
+- type: Documentation
+  url: https://developers.cegid.be/
+- type: Website
+  url: https://www.cegid.com/be/fr/produits/cegid-invoice-financing/
+- type: GitHubOrganization
+  url: https://github.com/koalaboox
+- type: Pricing
+  url: https://www.invoice-financing.cegid.com/v3/pricing
+- type: SignUp
+  url: https://www.invoice-financing.cegid.com/v3/pricing
+- type: Login
+  url: https://www.invoice-financing.cegid.com/v3/login
+- type: Support
+  url: https://www.cegid.com/fr/assistance-clients/
+- type: PrivacyPolicy
+  url: https://www.cegid.com/fr/mentions-legales/
+- type: Plans
+  url: plans/koalaboox-plans.yml
+- type: Authentication
+  url: authentication/koalaboox-authentication.yml
+- type: Conventions
+  url: conventions/koalaboox-conventions.yml
+- type: ErrorCatalog
+  url: errors/koalaboox-problem-types.yml
+- type: Conformance
+  url: conformance/koalaboox-conformance.yml
+- type: Lifecycle
+  url: lifecycle/koalaboox-lifecycle.yml
+- type: DataModel
+  url: data-model/koalaboox-data-model.yml
+- type: Packages
+  url: packages/koalaboox-packages.yml
+- type: MCPServer
+  url: mcp/koalaboox-mcp.yml
+- type: LLMsTxt
+  url: llms/koalaboox-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
