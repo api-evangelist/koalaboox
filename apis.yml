@@ -40,6 +40,19 @@ tags:
 - Company
 - Invoicing
 - Electronic Invoicing
+- PEPPOL
+- Accounting
+- Invoice Financing
+- Working Capital
+- Small Business
+- Fintech
+- Belgium
+- Spain
+- Authentication
+tags_raw:
+- Company
+- Invoicing
+- Electronic Invoicing
 - Peppol
 - Accounting
 - Invoice Financing
@@ -60,6 +73,11 @@ apis:
   baseURL: https://connect.koalaboox.com
   image: https://raw.githubusercontent.com/koalaboox/static/main/CEGID_Logo_Bleu.png
   tags:
+  - Invoicing
+  - Electronic Invoicing
+  - Invoice Financing
+  - Authentication
+  tags_raw:
   - Invoicing
   - Electronic Invoicing
   - Invoice Financing
