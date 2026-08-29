@@ -12,6 +12,17 @@ description: 'Koalaboox is a Belgian cloud invoicing and cash-flow platform for 
   on a Stoplight developer portal, with a first-party Laravel reference architecture
   published on GitHub.'
 url: https://raw.githubusercontent.com/api-evangelist/koalaboox/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
