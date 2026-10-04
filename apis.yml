@@ -47,10 +47,13 @@ x-successor: Cegid Invoice & Financing / Cegid Click & Finance
 specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-19'
+x-docs-platform: stoplight
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-10-03
 tags:
 - Company
 - Invoicing
-- Electronic Invoicing
+- E-Invoicing
 - PEPPOL
 - Accounting
 - Invoice Financing
@@ -85,7 +88,7 @@ apis:
   image: https://raw.githubusercontent.com/koalaboox/static/main/CEGID_Logo_Bleu.png
   tags:
   - Invoicing
-  - Electronic Invoicing
+  - E-Invoicing
   - Invoice Financing
   - Authentication
   tags_raw:
