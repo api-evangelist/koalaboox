@@ -64,27 +64,105 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Koalaboox is a Belgian cloud invoicing and cash-flow platform for small businesses,
-self-employed professionals and their accountants. It now operates as **Cegid Invoice &
-Financing** — API brand **Cegid Click & Finance** — following its acquisition by Cegid.
+Koalaboox is a Belgian cloud invoicing and cash-flow platform for small businesses, self-employed professionals and their accountants, now operating as Cegid Invoice & Financing — API brand Cegid Click & Finance — following its acquisition by Cegid. The platform covers sales invoicing, quotes, purchase-invoice management, recurring invoices, dynamic dashboards, bank-account connections and Peppol-based electronic invoicing for the Belgian 2026 e-invoicing mandate, sold in Belgium and Spain. Alongside the SaaS it offers invoice financing — cash advances against outstanding invoices — underwritten by Cegid Fin Belgium. Koalaboox exposes a public REST API at connect.koalaboox.com secured with OAuth 2.0 authorization-code grants, documented on a Stoplight developer portal, with a first-party Laravel reference architecture published on GitHub.
 
-The platform covers sales invoicing, quotes, purchase-invoice management, recurring
-invoices, dynamic dashboards, bank-account connections and Peppol-based electronic
-invoicing for the Belgian 2026 e-invoicing mandate, sold in Belgium and Spain. Alongside
-the SaaS it offers invoice financing — cash advances against outstanding invoices —
-underwritten by Cegid Fin Belgium.
+**Areas:** Company · Invoicing · E-Invoicing · PEPPOL · Accounting · Invoice Financing · Working Capital · Small Business · Fintech · Belgium · Spain · Authentication
 
-## API
+## Koalaboox on APIs.io
 
-- Developer portal: https://developers.cegid.be/ (Stoplight, formerly developers.koala.eu)
-- Base URL: https://connect.koalaboox.com
-- Auth: OAuth 2.0 authorization code, bearer access tokens + refresh tokens
-- Reference implementation: https://github.com/koalaboox/api-refarch (Laravel, MIT)
+Everything profiled for Koalaboox is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/koalaboox/](https://apis.io/providers/koalaboox/)** — or go straight to one of the APIs or properties below.
 
-The API host `connect.koalaboox.com` is still live under the Koalaboox name even though
-the marketing and application hosts have moved to Cegid domains. No OpenAPI definition is
-publicly retrievable — the Stoplight workspace is locked and its reference nodes return
-404 — so the artifacts in this repo are grounded in first-party source code and live
-endpoint probes rather than a harvested spec.
+### APIs (1)
 
-Backed by: speedinvest
+- [Cegid Click & Finance API](https://apis.io/apis/koalaboox/cegid-click-finance-api/) — REST API for the Koalaboox / Cegid Click & Finance invoicing and invoice-financing platform. Resource-oriented URLs, JSON-encoded requests and responses,…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [koalaboox](https://apis.io/servers/koalaboox/koalaboox/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Koalaboox Authentication](https://apis.io/security/koalaboox/koalaboox-authentication/)
+- [Koalaboox Domain Security](https://apis.io/security/koalaboox/koalaboox-domain-security/)
+- [Koalaboox Vulnerability Disclosure](https://apis.io/security/koalaboox/koalaboox-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Koalaboox Plans](https://apis.io/plans/koalaboox/koalaboox-plans/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.cegid.com/be/fr/produits/cegid-invoice-financing/)
+- [Documentation](https://developers.cegid.be/)
+- [Pricing](https://www.invoice-financing.cegid.com/v3/pricing)
+- [Sign up](https://www.invoice-financing.cegid.com/v3/pricing)
+- [Support](https://www.cegid.com/fr/assistance-clients/)
+- [Blog](https://www.cegid.com/fr/insights/)
+- [Security](https://vdp.cegid.com/p/Policy)
+- [Privacy policy](https://www.cegid.com/fr/mentions-legales/)
+- [GitHub](https://github.com/koalaboox)
+
+## API Evangelist rating
+
+**Kin Score 30.1** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 55.3 |
+
+**Agent readiness 5.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/koalaboox/](https://apis.io/providers/koalaboox/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Koalaboox: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/koalaboox/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
